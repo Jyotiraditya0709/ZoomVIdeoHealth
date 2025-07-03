@@ -1,41 +1,20 @@
-// Define the CSP policy as a single-line string
-const ContentSecurityPolicy =
+// next.config.js
+const csp =
   "default-src 'self'; " +
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; " +
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
-  "style-src-elem 'self' https://fonts.googleapis.com; " +
   "font-src 'self' https://fonts.gstatic.com;";
 
-const securityHeaders = [
-  {
-    key: "Content-Security-Policy",
-    value: ContentSecurityPolicy,
-  },
-];
-
-const nextConfig = {
-  reactStrictMode: true,
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "source.boringavatars.com",
-        pathname: "**/*",
-      },
-    ],
-  },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
+module.exports = {
+  headers: async () => [
+    {
+      source: "/(.*)",
+      headers: [
+        {
+          key: "Content-Security-Policy",
+          value: csp,
+        },
+      ],
+    },
+  ],
 };
-
-module.exports = nextConfig;
