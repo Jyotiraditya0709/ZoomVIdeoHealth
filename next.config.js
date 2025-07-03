@@ -41,4 +41,5 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+// Use CommonJS export for Next.js config files
+module.exports = nextConfig;
