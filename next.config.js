@@ -1,26 +1,24 @@
-const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval';
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  style-src-elem 'self' https://fonts.googleapis.com;
-  font-src 'self' https://fonts.gstatic.com;
-`;
+// Define the CSP policy as a single-line string
+const ContentSecurityPolicy =
+  "default-src 'self'; " +
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+  "style-src-elem 'self' https://fonts.googleapis.com; " +
+  "font-src 'self' https://fonts.gstatic.com;";
 
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
-    value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim(),
+    value: ContentSecurityPolicy,
   },
 ];
 
 const nextConfig = {
   reactStrictMode: true,
-
   i18n: {
     locales: ["en"],
     defaultLocale: "en",
   },
-
   images: {
     remotePatterns: [
       {
@@ -30,7 +28,6 @@ const nextConfig = {
       },
     ],
   },
-
   async headers() {
     return [
       {
@@ -41,5 +38,4 @@ const nextConfig = {
   },
 };
 
-// Use CommonJS export for Next.js config files
 module.exports = nextConfig;
