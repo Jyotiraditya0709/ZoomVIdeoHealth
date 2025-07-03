@@ -1,5 +1,3 @@
-/** @type {import("next").NextConfig} */
-
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
