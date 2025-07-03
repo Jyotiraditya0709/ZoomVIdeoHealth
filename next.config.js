@@ -1,12 +1,5 @@
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
- */
-await import("./src/env.js");
-
 /** @type {import("next").NextConfig} */
 
-// Define the CSP policy
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
@@ -22,7 +15,7 @@ const securityHeaders = [
   },
 ];
 
-const config = {
+const nextConfig = {
   reactStrictMode: true,
 
   i18n: {
@@ -50,4 +43,4 @@ const config = {
   },
 };
 
-export default config;
+export default nextConfig;
